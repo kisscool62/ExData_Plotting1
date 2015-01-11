@@ -28,9 +28,13 @@ pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Global_intensit
 
 #plotting
 Sys.setlocale(category = "LC_TIME", "English")
+
+#will be filled column afeter column, 2 rows per columns
 par(mfcol=c(2,2))
 
-
+#(1,1) Global_active_power
+# X O
+# O O
 plot(
  pwr$Global_active_power ~ pwr$DateTime,
  type='l',
@@ -40,7 +44,9 @@ plot(
  )
 
 
-
+#(2,1) Energy sub metering
+# O O
+# X O
 plot(
   pwr$Sub_metering_1 ~  pwr$DateTime,
   type='l',
@@ -55,7 +61,9 @@ points(
  col='blue',
  type='l')
 
-
+#(1,2) Voltage
+# O X
+# O O
 plot(
   pwr$Voltage ~  pwr$DateTime,
   type='l',
@@ -63,6 +71,9 @@ plot(
   ylab='Voltage'
   )
 
+#(2,2) Global_reactive_power
+# O O
+# O X
 plot(
   pwr$Global_reactive_power ~  pwr$DateTime,
   type='l',
