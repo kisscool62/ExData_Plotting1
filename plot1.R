@@ -22,6 +22,9 @@ pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Global_active_p
 pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Sub_metering_1)))
 pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Sub_metering_2)))
 pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Sub_metering_3)))
+pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Voltage)))
+pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Global_reactive_power)))
+pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Global_intensity)))
 
 #plotting
 

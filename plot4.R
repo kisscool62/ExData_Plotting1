@@ -27,17 +27,50 @@ pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Global_reactive
 pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Global_intensity)))
 
 #plotting
-#set locale to english because french weekdays are displayed here
-Sys.setlocale(category = "LC_TIME", "C")
-with(pwr,
-plot(
-  Global_active_power ~ DateTime,
-  type='l',
-  ylab='Global Active Power (kilowatts)', 
-  xlab= '',
-  main = '')
-)
+Sys.setlocale(category = "LC_TIME", "English")
+par(mfcol=c(2,2))
 
-filename <- 'plot2.png'
+
+plot(
+ pwr$Global_active_power ~ pwr$DateTime,
+ type='l',
+ ylab='Global Active Power (kilowatts)', 
+ xlab= '',
+ main = ''
+ )
+
+
+
+plot(
+  pwr$Sub_metering_1 ~  pwr$DateTime,
+  type='l',
+  ylab='Energy sub metering'
+ )
+points(
+ pwr$Sub_metering_2 ~ pwr$DateTime,
+ col='red',
+ type='l')
+points(
+ pwr$Sub_metering_3 ~ pwr$DateTime,
+ col='blue',
+ type='l')
+
+
+plot(
+  pwr$Voltage ~  pwr$DateTime,
+  type='l',
+  xlab='datetime',
+  ylab='Voltage'
+  )
+
+plot(
+  pwr$Global_reactive_power ~  pwr$DateTime,
+  type='l',
+  xlab='datetime',
+  ylab='Global_reactive_power'
+  )
+
+
+filename <- 'plot4.png'
 dev.copy(png, file=filename)
 dev.off()
