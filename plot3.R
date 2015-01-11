@@ -24,13 +24,33 @@ pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Sub_metering_2)
 pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Sub_metering_3)))
 
 #plotting
+Sys.setlocale(category = "LC_TIME", "C")
+with(pwr,
+     plot(
+       Sub_metering_1 ~ DateTime,
+       type='l',
+       ylab='Energy sub metering', 
+       xlab= '',
+       main = '')
+)
 
-hist(
-  x = pwr$Global_active_power, 
-  col = 'red', 
-  xlab='Global Active Power (kilowatts)', 
-  main = 'GLobal Active Power')
+with(pwr,
+     points(
+       Sub_metering_2 ~ DateTime,
+       col='red',
+       type='l')
+)
 
-filename <- 'plot1.png'
+with(pwr,
+     points(
+       Sub_metering_3 ~ DateTime,
+       col='blue',
+       type='l')
+)
+
+#adding legends
+legend("topright", lty=1, col=c('black', 'red', 'blue'), legend = c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3'))
+
+filename <- 'plot3.png'
 dev.copy(png, file=filename)
 dev.off()
