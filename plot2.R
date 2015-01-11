@@ -21,6 +21,7 @@ pwr <- mutate(pwr, DateTime = as.POSIXct(DateTime, format='%Y-%m-%d %H:%M:%S'))
 pwr <- mutate(pwr, Global_active_power = as.numeric(as.character(Global_active_power)))
 
 #plotting
+#set locale to english because french weekdays are displayed here
 Sys.setlocale(category = "LC_TIME", "C")
 with(pwr,
 plot(
